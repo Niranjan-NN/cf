@@ -1,0 +1,168 @@
+.delivery-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.delivery-container {
+  max-width: 900px;
+  margin: 100px auto 40px auto; /* space for fixed navbar */
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+}
+
+.delivery-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.delivery-section {
+  margin-bottom: 20px;
+}
+
+.delivery-section h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #444;
+}
+
+.delivery-address-select {
+  display: flex;
+  flex-direction: column;
+}
+
+.delivery-address-select select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.delivery-cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.delivery-cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.delivery-total {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.delivery-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.delivery-place-order {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delivery-place-order:hover {
+  background: #218838;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .delivery-container {
+    margin: 80px 15px;
+    padding: 15px;
+  }
+
+  .delivery-title {
+    font-size: 20px;
+  }
+
+  .delivery-place-order {
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .delivery-container {
+    margin: 70px 10px;
+    padding: 12px;
+  }
+
+  .delivery-title {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .delivery-cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delivery-cart-item span:last-child {
+    margin-top: 4px;
+  }
+
+  .delivery-place-order {
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+.payment-method-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+  .payment-method-select {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+.loading-gif {
+  width: 50px;
+  height: 50px;
+}
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.success-video {
+  width: 150px;
+  height: 150px;
+}
+
+.success-text {
+  font-size: 1.8rem;
+  color: green;
+  margin-top: 15px;
+}

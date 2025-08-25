@@ -1,0 +1,126 @@
+/* Full-page responsive layout */
+.otp-container {
+    position: fixed; /* Fix the container in the center */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Allow the container to adjust its height */
+    width: 100vw;
+    background-color: #ffffff;
+    padding: 20px;
+    z-index: 1000; /* Ensure it stays on top of other elements */
+  }
+  
+  /* OTP box styling */
+  .otp-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* OTP header */
+  .otp-header {
+    margin-bottom: 20px;
+  }
+  
+  .otp-message {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .otp-phone {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* OTP input section */
+  .otp-input-section {
+    margin-top: 20px;
+  }
+  
+  .otp-instruction {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* OTP Form */
+  .otp-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* OTP Input */
+  .otp-input {
+    font-size: 18px;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Verify Button */
+  .verify-button {
+    background-color: #ff9800;
+    color: white;
+    font-size: 18px;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .verify-button:hover {
+    background-color: #e68a00;
+  }
+  
+  /* Resend Button */
+  .resend-button {
+    background-color: transparent;
+    color: #ff9800;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: color 0.3s;
+  }
+  
+  .resend-button:hover {
+    color: #e68a00;
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .otp-box {
+      width: 90%;
+      padding: 30px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .otp-input {
+      font-size: 16px;
+      padding: 12px;
+    }
+  
+    .verify-button, .resend-button {
+      font-size: 16px;
+      padding: 12px;
+    }
+  }
+  

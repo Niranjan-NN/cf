@@ -1,0 +1,404 @@
+/* Body Styling */
+body {
+    font-family: "Arial", sans-serif;
+    background: #ffffff;
+    height: auto;
+    margin-top: 5%;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  /* Container */
+  .home-container {
+    padding: 0 10px; /* Reduced padding */
+    width: 100%;
+    max-width: 1000px; /* Reduced max-width */
+    margin: 0 auto;
+  }
+  
+  /* Banner */
+  .banner {
+    position: relative;
+    text-align: center;
+    color: #343232;
+    background: url('https://i.pinimg.com/736x/8d/fc/c5/8dfcc58cf6cd495392f6f0d3372c6053.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 80px 16px; /* Reduced padding */
+    border-radius: 10px; /* Reduced border-radius */
+    margin: 16px 0; /* Reduced margin */
+  }
+  
+  .banner-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .banner-title {
+    font-size: 36px; /* Reduced font size */
+    font-weight: bold;
+    margin-bottom: 8px; /* Reduced margin */
+  }
+  
+  .banner-subtitle {
+    font-size: 16px; /* Reduced font size */
+    margin-bottom: 16px; /* Reduced margin */
+  }
+  
+  .shop-now-button {
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 8px 16px; /* Reduced padding */
+    border: none;
+    border-radius: 20px; /* Reduced border-radius */
+    font-size: 14px; /* Reduced font size */
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .shop-now-button:hover {
+    background-color: #e05a49;
+  }
+  
+  .banner-offer {
+    position: absolute;
+    top: 16px; /* Reduced top */
+    right: 16px; /* Reduced right */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 6px; /* Reduced border-radius */
+    padding: 8px 16px; /* Reduced padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .offer-title {
+    font-size: 14px; /* Reduced font size */
+    font-weight: bold;
+    color: #ff6f61;
+  }
+  
+  .offer-description {
+    font-size: 10px; /* Reduced font size */
+    color: #666;
+  }
+  
+  /* Category Buttons */
+  .category-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px; /* Reduced gap */
+    margin-bottom: 16px; /* Reduced margin */
+  }
+  
+  .category-btn {
+    padding: 8px 16px; /* Reduced padding */
+    font-size: 14px; /* Reduced font size */
+    background-color: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #f8f9fa;
+    border-radius: 20px; /* Reduced border-radius */
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .category-btn.active,
+  .category-btn:hover {
+    background-color: #ff6f61;
+    color: #fff;
+    border-color: #ff6f61;
+  }
+  
+  /* Category Heading */
+  .category-heading {
+    text-align: center;
+    font-size: 20px; /* Reduced font size */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px; /* Reduced margin */
+  }
+  
+  /* Products Section */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Reduced minmax */
+    gap: 16px; /* Reduced gap */
+  }
+  
+  .product-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .product-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff7f7f;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 180px; /* <-- FIXED HEIGHT */
+    object-fit: cover; /* <-- COVER THE SPACE */
+    border-radius: 10px;
+  }
+  
+  .product-info {
+    margin-top: 10px;
+  }
+  
+  .product-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .product-price {
+    color: #ff7f7f;
+    margin-top: 4px;
+    font-size: 16px;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Slightly increased padding for better spacing */
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure full width */
+    position: fixed; /* Fix the navbar to the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it stays on top */
+  }
+  
+  .navbar-brand {
+    font-size: 24px; /* Increased font size for better visibility */
+    font-weight: bold;
+    color: #ff9800; /* Match the brand color from the login CSS */
+    text-decoration: none;
+  }
+  
+  .navbar-search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 10px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .navbar-icons {
+    display: flex;
+    gap: 20px; /* Increased gap for better spacing */
+    font-size: 24px; /* Increased font size for better visibility */
+    color: #ff9800; /* Match the brand color */
+    cursor: pointer;
+  }
+  
+  .navbar-icons svg {
+    width: 24px; /* Ensure icons are sized appropriately */
+    height: 24px;
+  }
+  
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: space-around; /* Distribute buttons evenly */
+    align-items: center; /* Center items vertically */
+    padding: 10px 0; /* Padding for spacing */
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* Ensure full width */
+    left: 0; /* Ensure it starts from the left edge */
+    z-index: 1000; /* Ensure it stays on top */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  }
+  
+  .footer-button {
+    background: none;
+    border: none;
+    padding: 10px; /* Padding for clickable area */
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-size: 24px; /* Adjust font size as needed */
+    color: #ff9800; /* Match the brand color */
+  }
+  
+  .footer-button:hover {
+    transform: scale(1.2); /* Scale up on hover */
+  }
+  
+  .footer-button svg {
+    width: 28px; /* Ensure icons are sized appropriately */
+    height: 28px;
+  }
+  
+  /* Search Bar Container */
+  .navbar-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Adjust max-width as needed */
+    margin: 0 20px; /* Adjust margin as needed */
+  }
+  
+  /* Search Input */
+  .search-input {
+    width: 100%;
+    padding: 10px 40px 10px 15px; /* Adjust padding for icon space */
+    border: 1px solid #ddd;
+    border-radius: 24px; /* Rounded corners */
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .search-input:focus {
+    border-color: #ff9800; /* Match the brand color */
+    box-shadow: 0 0 5px rgba(255, 152, 0, 0.5); /* Subtle shadow on focus */
+  }
+  
+  /* Search Icon */
+  .search-icon {
+    position: absolute;
+    right: 10px; /* Position icon inside the input */
+    color: #ccc;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+      width: 200px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      height: 100%;
+  }
+  
+  .sidebar ul {
+      list-style: none;
+      padding: 0;
+  }
+  
+  .sidebar ul li {
+      margin: 10px 0;
+  }
+  
+  .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      display: block;
+      padding: 10px;
+      border-radius: 4px;
+  }
+  
+  .sidebar ul li a:hover {
+      background-color: #f0f0f0;
+  }
+  
+  /* Content */
+  .content {
+      margin-left: 220px;
+      padding: 20px;
+  }
+  
+  .content h2 {
+      margin-top: 0;
+  }
+  
+  form {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  form label {
+      margin-top: 10px;
+  }
+  
+  form input, form select, form textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  }
+  
+  form textarea {
+      resize: vertical;
+  }
+  
+  .add-btn {
+      margin-top: 20px;
+      background-color: #6a0dad;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+  }
+  
+  .add-btn:hover {
+      background-color: #5a0c9a;
+  }
+  
+  .success-toast,
+.error-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+  color: white;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+.success-toast {
+  background-color: #28a745;
+}
+
+.error-toast {
+  background-color: #dc3545;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}

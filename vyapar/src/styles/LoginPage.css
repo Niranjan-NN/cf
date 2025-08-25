@@ -1,0 +1,294 @@
+/* Full-page responsive layout */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100vw;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+/* Login box styling */
+.login-box {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+}
+
+/* Left Section */
+.left-section {
+  background-color: #ff9800;
+  color: white;
+  padding: 40px;
+  width: 50%;
+  text-align: center;
+}
+
+.left-section .title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.left-section .subtitle {
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.left-section .illustration {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Right Section */
+.right-section {
+  padding: 40px;
+  width: 50%;
+  text-align: center;
+}
+
+/* Vyapar Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 30px;
+  margin-right: 8px;
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Welcome Title */
+.welcome-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Welcome Subtitle */
+.welcome-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Form styling */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input fields */
+.input-field {
+  font-size: 16px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+/* Sign-in button */
+.signin-button {
+  background-color: #ff9800;
+  color: white;
+  font-size: 18px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signin-button:hover {
+  background-color: #e68a00;
+}
+
+/* Divider */
+.divider {
+  font-size: 14px;
+  color: #aaa;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+/* Social buttons */
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+/* Google button */
+.google {
+  background-color: #db4437;
+  color: white;
+}
+
+.google:hover {
+  background-color: #c1351c;
+}
+
+/* Apple button */
+.apple {
+  background-color: #333;
+  color: white;
+}
+
+.apple:hover {
+  background-color: black;
+}
+
+/* Social icons */
+.social-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+/* Forgot Password */
+.forgot-password {
+  font-size: 14px;
+  color: #666;
+  margin-top: 20px;
+}
+
+.forgot-password button {
+  background: none;
+  border: none;
+  color: #ff9800;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.forgot-password button:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-box {
+    flex-direction: column;
+  }
+
+  .left-section,
+  .right-section {
+    width: 100%;
+  }
+
+  .left-section {
+    padding: 20px;
+  }
+
+  .right-section {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-field {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .signin-button, .social-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+.success-popup {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #28a745;
+  color: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1000;
+  animation: popupFade 0.3s ease-out;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ✅ Common Toast Style */
+.success-toast,
+.error-toast {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  z-index: 9999;
+  animation: slide-in 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ Specific colors */
+.success-toast {
+  background-color: #28a745;
+}
+
+.error-toast {
+  background-color: #dc3545;
+}
+
+/* ✅ Slide in animation */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Fade out animation */
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}

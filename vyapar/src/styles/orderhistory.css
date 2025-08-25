@@ -1,0 +1,127 @@
+.orderhistory-container {
+  max-width: 1200px; /* wider for large screens */
+  margin: auto;
+  padding: 20px;
+}
+
+.orderhistory-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: clamp(22px, 2.5vw, 32px); /* scales with screen size */
+}
+
+.orderhistory-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.orderhistory-search {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.orderhistory-status-filter {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.orderhistory-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.orderhistory-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.orderhistory-card:hover {
+  transform: translateY(-3px);
+}
+
+.orderhistory-card-header {
+  display: flex;
+  flex-wrap: wrap; /* prevent overflow */
+  justify-content: space-between;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.status.delivered {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.cancelled {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.no-orders {
+  text-align: center;
+  font-size: 16px;
+  color: #777;
+}
+
+/* Tablets & small laptops */
+@media (max-width: 992px) {
+  .orderhistory-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .orderhistory-search,
+  .orderhistory-status-filter {
+    width: 100%;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .orderhistory-container {
+    padding: 15px;
+  }
+  .orderhistory-title {
+    font-size: 22px;
+  }
+  .orderhistory-card {
+    padding: 12px;
+  }
+  .orderhistory-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+  .orderhistory-container {
+    max-width: 1400px;
+  }
+  .orderhistory-title {
+    font-size: 32px;
+  }
+}

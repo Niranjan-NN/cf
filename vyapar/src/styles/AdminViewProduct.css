@@ -1,0 +1,219 @@
+/* Body Styling */
+body {
+    font-family: "Arial", sans-serif;
+    background: #ffffff;
+    height: auto;
+    margin-top: 5%;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Container */
+.home-container {
+    padding: 0 10px; /* Reduced padding */
+    width: 100%;
+    max-width: 10000px !important; /* Reduced max-width */
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Slightly increased padding for better spacing */
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure full width */
+    position: fixed; /* Fix the navbar to the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.navbar-brand {
+    font-size: 24px; /* Increased font size for better visibility */
+    font-weight: bold;
+    color: #ff9800; /* Match the brand color from the login CSS */
+    text-decoration: none;
+}
+
+.navbar-search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.navbar-icons {
+    display: flex;
+    gap: 20px; /* Increased gap for better spacing */
+    font-size: 24px; /* Increased font size for better visibility */
+    color: #ff9800; /* Match the brand color */
+    cursor: pointer;
+}
+
+.navbar-icons svg {
+    width: 24px; /* Ensure icons are sized appropriately */
+    height: 24px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Content */
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+.content h2 {
+    margin-top: 0;
+}
+
+/* Table */
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.content th, .content td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #dee2e6;
+}
+
+.content th {
+    background-color: #f8f9fa;
+}
+
+.edit-button, .save-button, .cancel-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-button:hover, .save-button:hover, .cancel-button:hover {
+    background-color: #0056b3;
+}
+
+.save-button {
+    background-color: #28a745;
+}
+
+.save-button:hover {
+    background-color: #218838;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+/* Edit Form */
+.edit-form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+.edit-form h3 {
+    margin-bottom: 20px;
+}
+
+.edit-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.edit-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.success-toast,
+.error-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.success-toast {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.error-toast {
+  background-color: #dc3545;
+  color: #fff;
+}
+.stock-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  font-size: 0.85rem;
+}
+.stock-list li {
+  margin-bottom: 2px;
+}

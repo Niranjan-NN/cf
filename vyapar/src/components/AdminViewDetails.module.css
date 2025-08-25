@@ -1,0 +1,241 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbarBrand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff9800;
+    text-decoration: none;
+}
+
+.navbarSearch {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 20px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.searchInput:focus {
+    border-color: #ff9800;
+    box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+}
+
+.searchIcon {
+    position: absolute;
+    right: 10px;
+    color: #ccc;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.navbarIcons {
+    display: flex;
+    gap: 20px;
+    font-size: 24px;
+    color: #ff9800;
+    cursor: pointer;
+}
+
+.logoutIcon {
+    font-size: 24px;
+    color: #ff9800;
+    cursor: pointer;
+}
+
+.main {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    margin-top: 60px; /* Adjust for fixed navbar */
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+.bookingSection {
+    flex: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 220px; /* Adjust for fixed sidebar */
+}
+
+.bookingSection h2 {
+    margin-top: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #f4f4f9;
+}
+
+table td img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.booked {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.onHold {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.invoiceSection {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+}
+
+.invoiceSection h2 {
+    margin-top: 0;
+}
+
+.invoiceDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.invoiceDetails img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.invoiceInfo {
+    text-align: center;
+}
+
+.invoiceInfo h3 {
+    margin: 0;
+}
+
+.invoiceInfo p {
+    margin: 5px 0;
+}
+
+.description {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.invoiceUpdate {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.invoiceActions {
+    display: flex;
+    justify-content: center;
+}
+
+.invoiceActions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.accept {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.saveSend {
+    background-color: #007bff;
+    color: #fff;
+}

@@ -1,0 +1,92 @@
+.orderdetails-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.orderdetails-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: clamp(22px, 2.5vw, 28px);
+}
+
+.orderdetails-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.orderdetails-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-weight: bold;
+  gap: 8px;
+}
+
+.orderdetails-items {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.orderdetails-items li {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+
+.item-name {
+  flex: 1 1 40%;
+}
+
+.item-qty {
+  flex: 1 1 20%;
+}
+
+.item-price {
+  flex: 1 1 30%;
+  text-align: right;
+}
+
+.orderdetails-total {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.cancel-btn {
+  display: block;
+  width: 100%;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cancel-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.cancel-btn:hover:not(:disabled) {
+  background: #e60000;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .orderdetails-items li {
+    flex-direction: column;
+    text-align: left;
+  }
+  .item-price {
+    text-align: left;
+  }
+}

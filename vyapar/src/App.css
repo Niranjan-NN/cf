@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  justify-content: center;
+  align-items: center;
+  height: 150vh;
+  margin: 0;
+}
+
+.login-container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 350px;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #c8a2c8;
+  border-radius: 6px;
+  outline: none;
+}
+
+.sign-in-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sign-in-btn:hover {
+  background: darkgreen;
+}
+
+.alt-signin {
+  margin-top: 20px;
+}
+
+.google-btn,
+.apple-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.google-btn {
+  background: #4285f4;
+  color: white;
+}
+
+.google-btn:hover {
+  background: #357ae8;
+}
+
+.apple-btn {
+  background: #000;
+  color: white;
+}
+
+.apple-btn:hover {
+  background: #333;
+}

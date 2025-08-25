@@ -1,0 +1,127 @@
+/* EmailComponent.css */
+
+/* Set the background color for the body */
+body {
+  background-color: #ffffff; /* Light background color */
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Center the form vertically and horizontally */
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* Style the card */
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px; /* Increased the max-width to 500px */
+  background-image: linear-gradient(135deg, #f6f7fb, #e9eff4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add a smooth transition effect for the card */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styles */
+h3 {
+  color: #4e4b66; /* Soft dark gray */
+  font-size: 1.85rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px; /* Add letter spacing for better readability */
+}
+
+/* Input field styling */
+.form-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #5f6368; /* Slightly darker gray for labels */
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus state for the input */
+.form-control:focus {
+  border-color: #ff9800;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: #ff9800;
+  border-color: #ff9800;
+  border-radius: 8px;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ff8f00; /* Slightly darker shade for hover */
+  border-color: #ff8f00;
+  transform: translateY(-2px);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+/* Text color for the email input value */
+input[type="email"] {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Ensure proper responsiveness */
+@media (max-width: 576px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .form-control {
+    padding: 0.6rem 1rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+}
+
+/* Add a smooth background gradient on the body */
+body {
+  background: linear-gradient(135deg, #f5f5f5, #ffffff);
+}
+
+/* Add smooth hover effect to the input fields */
+.form-control:hover {
+  border-color: #ffa726;
+}

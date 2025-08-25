@@ -1,0 +1,188 @@
+/* Full-screen layout with background color */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100vw;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+/* Full-width Form Box */
+.signup-box {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+}
+
+/* Left Section */
+.left-section {
+  background-color: #ff9800;
+  color: white;
+  padding: 40px;
+  width: 50%;
+  text-align: center;
+}
+
+.left-section .title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.left-section .subtitle {
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.left-section .illustration {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Right Section */
+.right-section {
+  padding: 40px;
+  width: 50%;
+  text-align: center;
+}
+
+/* Vyapar Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 30px;
+  margin-right: 8px;
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Welcome Title */
+.welcome-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Welcome Subtitle */
+.welcome-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Input Fields */
+.form-control {
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+/* Sign Up Button */
+.btn-primary {
+  background-color: #ff9800;
+  border: none;
+  font-size: 18px;
+  padding: 12px;
+  width: 100%;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #e68a00;
+}
+
+/* Google Button */
+.google-button {
+  background-color: #db4437;
+  color: white;
+  font-size: 16px;
+  padding: 12px;
+  width: 100%;
+}
+
+.google-button:hover {
+  background-color: #c1351c;
+}
+
+/* Apple Button */
+.apple-button {
+  background-color: #333; /* Dark Grey */
+  color: white;
+  font-size: 16px;
+  padding: 12px;
+  width: 100%;
+}
+
+.apple-button:hover {
+  background-color: black;
+}
+
+/* Social Icons */
+.social-icon {
+  width: 20px;
+  margin-right: 8px;
+}
+
+/* Divider */
+.divider {
+  font-size: 14px;
+  color: #aaa;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+/* Login Link */
+.login-link {
+  font-size: 14px;
+  color: #666;
+}
+
+.login-link span {
+  color: #ff9800;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-link span:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signup-box {
+    flex-direction: column;
+  }
+
+  .left-section,
+  .right-section {
+    width: 100%;
+  }
+
+  .left-section {
+    padding: 20px;
+  }
+
+  .right-section {
+    padding: 30px;
+  }
+}

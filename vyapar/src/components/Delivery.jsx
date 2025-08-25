@@ -48,7 +48,7 @@ const Delivery = () => {
       axiosInstance
         .get(`${api}/api/getByIdAddress/${userId}`)
         .then((res) => {
-          setAddresses(res.data || []);
+          setAddresses(res.data.addresses || []);
           if (res.data.length > 0) {
             setSelectedAddressId(res.data[0]._id);
           }

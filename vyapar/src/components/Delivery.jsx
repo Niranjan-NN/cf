@@ -13,6 +13,7 @@ const Delivery = () => {
   const [selectedAddressId, setSelectedAddressId] = useState("");
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [userId, setUserId] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("COD");
   const [orderPlaced, setOrderPlaced] = useState(false);
 
@@ -28,11 +29,11 @@ const Delivery = () => {
 
     try {
       const decoded = jwtDecode(token);
-      const userId = decoded.id || decoded.userId;
-
+      const id = decoded.id || decoded._id;
+      setUserId(id);
       // Fetch user profile
       axiosInstance
-        .get(`${api}/api/user/${userId}`, {
+        .get(`${api}/api/user/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then(res => {
@@ -46,9 +47,9 @@ const Delivery = () => {
 
       // Fetch addresses
       axiosInstance
-        .get(`${api}/api/getByIdAddress/${userId}`)
+        .get(`${api}/api/getByIdAddress/${id}`)
         .then((res) => {
-          setAddresses(res.data.addresses || []);
+          setAddresses(res.data || []);
           if (res.data.length > 0) {
             setSelectedAddressId(res.data[0]._id);
           }

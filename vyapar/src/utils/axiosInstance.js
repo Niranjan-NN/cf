@@ -27,7 +27,7 @@ axiosInstance.interceptors.response.use(
 
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
         return axios(originalRequest);
-      } catch{
+      } catch(refreshErr){
         localStorage.removeItem("token");
         window.location.href = "/login";
       }

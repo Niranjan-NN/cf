@@ -25,7 +25,7 @@ axiosInstance.interceptors.response.use(
         const newToken = response.data.token;
         localStorage.setItem("token", newToken);
 
-        originalRequest.headers.Authorization = `Bearer ${newToken}`;
+        originalRequest.headers.common["Authorization"] = `Bearer ${newToken}`;
         return axios(originalRequest);
       } catch(refreshErr){
         localStorage.removeItem("token");

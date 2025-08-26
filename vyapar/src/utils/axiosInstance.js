@@ -1,4 +1,5 @@
-import axios from 'axios';
+// src/utils/axiosInstance.js
+import axios from "axios";
 
 const api = import.meta.env.VITE_API_URL;
 
@@ -7,9 +8,19 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
+// Add Authorization header from localStorage on each request
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// Handle refresh token
 axiosInstance.interceptors.response.use(
-  res => res,
-  async err => {
+  (res) => res,
+  async (err) => {
     const originalRequest = err.config;
 
     if (
@@ -17,17 +28,20 @@ axiosInstance.interceptors.response.use(
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
+
       try {
-        const response = await axios.post(`${api}/api/refresh-token`, {}, {
-          withCredentials: true,
-        });
+        const response = await axios.post(
+          `${api}/api/refresh-token`,
+          {},
+          { withCredentials: true }
+        );
 
         const newToken = response.data.token;
         localStorage.setItem("token", newToken);
 
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
         return axios(originalRequest);
-      } catch(refreshErr){
+      } catch (refreshErr) {
         localStorage.removeItem("token");
         window.location.href = "/login";
       }

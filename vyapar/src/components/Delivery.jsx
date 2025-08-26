@@ -23,10 +23,10 @@ const Delivery = () => {
     const fetchData = async () => {
       const token =
         localStorage.getItem("token")
-      // if (!token) {
-      //   navigate("/login");
-      //   return;
-      // }
+      if (!token) {
+        navigate("/login");
+        return;
+      }
 
       try {
         const decoded = jwtDecode(token);

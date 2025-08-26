@@ -33,8 +33,8 @@ const Delivery = () => {
         const userId = decoded.id || decoded._id || decoded.userId;
 
         // ✅ Fetch user profile
-        const profileRes = await axiosInstance.get(${api}/api/user/${userId}, {
-          headers: { Authorization: Bearer ${token} },
+        const profileRes = await axiosInstance.get(`${api}/api/user/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
         setProfileData({
           id: profileRes.data._id,
@@ -45,9 +45,9 @@ const Delivery = () => {
 
         // ✅ Fetch user-specific addresses
         const addrRes = await axiosInstance.get(
-          ${api}/api/getByIdAddress/${userId},
+          `${api}/api/getByIdAddress/${userId}`,
           {
-            headers: { Authorization: Bearer ${token} },
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
         setAddresses(addrRes.data || []);
@@ -56,8 +56,8 @@ const Delivery = () => {
         }
 
         // ✅ Fetch cart
-        const cartRes = await axiosInstance.get(${api}/api/cart, {
-          headers: { Authorization: Bearer ${token} },
+        const cartRes = await axiosInstance.get(`${api}/api/cart`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
         const items = cartRes.data.items || [];
         setCartItems(items);
@@ -99,9 +99,9 @@ const Delivery = () => {
 
     try {
       await axiosInstance.post(
-        ${api}/api/order/place,
+        `${api}/api/order/place`,
         { paymentMethod, addressId: selectedAddressId },
-        { headers: { Authorization: Bearer ${localStorage.getItem("token")} } }
+        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
 
       setOrderPlaced(true);
@@ -142,7 +142,7 @@ const Delivery = () => {
                 >
                   {addresses.map((addr) => (
                     <option key={addr._id} value={addr._id}>
-                      {${addr.fullName}, ${addr.locationDetails}, ${addr.city}, ${addr.state} - ${addr.pincode}}
+                      {`${addr.fullName}, ${addr.locationDetails}, ${addr.city}, ${addr.state} - ${addr.pincode}`}
                     </option>
                   ))}
                 </select>

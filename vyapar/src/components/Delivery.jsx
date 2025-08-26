@@ -22,11 +22,11 @@ const Delivery = () => {
   useEffect(() => {
     const fetchData = async () => {
       const token =
-        localStorage.getItem("token") || localStorage.getItem("authToken");
-      if (!token) {
-        navigate("/login");
-        return;
-      }
+        localStorage.getItem("token")
+      // if (!token) {
+      //   navigate("/login");
+      //   return;
+      // }
 
       try {
         const decoded = jwtDecode(token);

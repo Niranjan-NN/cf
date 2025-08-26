@@ -17,9 +17,11 @@ const authMiddleware = (req, res, next) => {
  
      jwt.verify(token, process.env.SECRET_CODE, (err, decoded) => {
    if (err) {
-     console.error("JWT Verification Error:", err.message);
-     return res.status(401).json({ message: "Invalid token: " + err.message });
-   }
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).json({ message: "Token expired" }); // ✅ triggers refresh
+      }
+      return res.status(403).json({ message: "Invalid token" });
+    }
  
  
        req.user = decoded;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Home.css";
-import "../styles/Delivery.css";
+import "../styles/home.css";
+import "../styles/delivery.css";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
@@ -20,74 +20,77 @@ const Delivery = () => {
   const api = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const token =
-        localStorage.getItem("token")
-      if (!token) {
-        navigate("/login");
-        return;
-      }
+    const token = localStorage.getItem("token") || localStorage.getItem("authToken");
+    if (!token) {
+      navigate("/login");
+      return;
+    }
 
-      try {
-        const decoded = jwtDecode(token);
-        const userId = decoded.id || decoded._id || decoded.userId;
+    try {
+      const decoded = jwtDecode(token);
+      const userId = decoded.id || decoded.userId;
 
-        // ✅ Fetch user profile
-        const profileRes = await axiosInstance.get(`${api}/api/user/${userId}`, {
-          headers: { Authorization: `Bearer ${token}` },
+      // Fetch user profile
+      axiosInstance
+        .get(`${api}/api/user/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(res => {
+          setProfileData({
+            id: res.data._id,
+            name: res.data.name,
+            phone: res.data.mobileNumber,
+            email: res.data.email
+          });
         });
-        setProfileData({
-          id: profileRes.data._id,
-          name: profileRes.data.name,
-          phone: profileRes.data.mobileNumber,
-          email: profileRes.data.email,
-        });
 
-        // ✅ Fetch user-specific addresses
-        const addrRes = await axiosInstance.get(
-          `${api}/api/getByIdAddress/${userId}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
+      // Fetch addresses
+      axiosInstance
+        .get(`${api}/api/getByIdAddress/${userId}`)
+        .then((res) => {
+          setAddresses(res.data || []);
+          if (res.data.length > 0) {
+            setSelectedAddressId(res.data[0]._id);
           }
-        );
-        setAddresses(addrRes.data || []);
-        if (addrRes.data.length > 0) {
-          setSelectedAddressId(addrRes.data[0]._id);
-        }
+        })
+        .catch((err) => console.error("Address fetch error:", err));
 
-        // ✅ Fetch cart
-        const cartRes = await axiosInstance.get(`${api}/api/cart`, {
+      // Fetch cart
+      axiosInstance
+        .get(`${api}/api/cart`, {
           headers: { Authorization: `Bearer ${token}` },
-        });
-        const items = cartRes.data.items || [];
-        setCartItems(items);
+        })
+        .then((res) => {
+          const items = res.data.items || [];
+          setCartItems(items);
 
-        const total = items.reduce(
-          (sum, item) => sum + (item.product?.price || 0) * item.quantity,
-          0
-        );
-        setTotalPrice(total);
-      } catch (err) {
-        console.error("Error fetching delivery data:", err);
-        navigate("/login");
-      }
-    };
-
-    fetchData();
+          const total = items.reduce(
+            (sum, item) => sum + (item.product?.price || 0) * item.quantity,
+            0
+          );
+          setTotalPrice(total);
+        })
+        .catch((err) => console.error("Cart fetch error:", err));
+    } catch (err) {
+      console.error("Invalid token:", err);
+      navigate("/login");
+    }
   }, [navigate, api]);
 
   // ✅ Group cart items by shop
-  const groupedByShop = cartItems.reduce((acc, item) => {
-    const shopName =
-      item.product?.shopStocks?.[0]?.shopName ||
-      item.shopName ||
-      "Unknown Shop";
-    if (!acc[shopName]) acc[shopName] = [];
-    acc[shopName].push(item);
-    return acc;
-  }, {});
+  // ✅ Group cart items by shop
+const groupedByShop = cartItems.reduce((acc, item) => {
+  const shopName =
+    item.product?.shopStocks?.[0]?.shopName || // from DB product data
+    item.shopName ||                           // from updated backend if available
+    "Unknown Shop";
+  if (!acc[shopName]) acc[shopName] = [];
+  acc[shopName].push(item);
+  return acc;
+}, {});
 
-  const handlePlaceOrder = async () => {
+
+  const handlePlaceOrder = () => {
     if (!selectedAddressId) {
       alert("Please select a delivery address.");
       return;
@@ -97,21 +100,22 @@ const Delivery = () => {
       return;
     }
 
-    try {
-      await axiosInstance.post(
+    axiosInstance
+      .post(
         `${api}/api/order/place`,
         { paymentMethod, addressId: selectedAddressId },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
-      );
-
-      setOrderPlaced(true);
-      setTimeout(() => {
-        navigate("/order");
-      }, 2000);
-    } catch (err) {
-      console.error("Order placement error:", err);
-      alert("Failed to place order. Please try again.");
-    }
+      )
+      .then(() => {
+        setOrderPlaced(true);
+        setTimeout(() => {
+          navigate("/order");
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error("Order placement error:", err);
+        alert("Failed to place order. Please try again.");
+      });
   };
 
   return (
@@ -123,15 +127,9 @@ const Delivery = () => {
         {profileData && (
           <div className="delivery-section">
             <h3>Recipient Information</h3>
-            <p>
-              <strong>Name:</strong> {profileData.name}
-            </p>
-            <p>
-              <strong>Phone:</strong> {profileData.phone}
-            </p>
-            <p>
-              <strong>Email:</strong> {profileData.email}
-            </p>
+            <p><strong>Name:</strong> {profileData.name}</p>
+            <p><strong>Phone:</strong> {profileData.phone}</p>
+            <p><strong>Email:</strong> {profileData.email}</p>
 
             {addresses.length > 0 ? (
               <div className="delivery-address-select">
@@ -142,15 +140,13 @@ const Delivery = () => {
                 >
                   {addresses.map((addr) => (
                     <option key={addr._id} value={addr._id}>
-                      {`${addr.fullName}, ${addr.locationDetails}, ${addr.city}, ${addr.state} - ${addr.pincode}`}
+                      {`${addr.locationDetails}, ${addr.city}, ${addr.state} - ${addr.pincode}`}
                     </option>
                   ))}
                 </select>
               </div>
             ) : (
-              <p>
-                <strong>Address:</strong> No saved addresses
-              </p>
+              <p><strong>Address:</strong> No saved addresses</p>
             )}
           </div>
         )}
@@ -165,12 +161,8 @@ const Delivery = () => {
                   <ul className="delivery-cart-list">
                     {items.map((item, idx) => (
                       <li key={idx} className="delivery-cart-item">
-                        <span>
-                          {item.product?.title} ({item.quantity}x)
-                        </span>
-                        <span>
-                          ₹{(item.product?.price * item.quantity).toFixed(2)}
-                        </span>
+                        <span>{item.product?.title} ({item.quantity}x)</span>
+                        <span>₹{(item.product?.price * item.quantity).toFixed(2)}</span>
                       </li>
                     ))}
                   </ul>

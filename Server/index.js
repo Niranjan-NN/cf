@@ -16,7 +16,7 @@ const app = express();
 
 // CORS Configuration
 app.use(cors({
-    origin: ["https://cf-nu-blush.vercel.app","http://localhost:5173"],
+    origin: ["https://cf-gold-five.vercel.app","http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));

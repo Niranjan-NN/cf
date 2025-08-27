@@ -143,7 +143,19 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+const getOrderById = async(req,res) =>{
+  try{
+    const {orderId} = req.params;
 
+    const order = await Order.findById(orderId)
+    .populate("items.product") // 🔥 ensures product details come in
+      .populate("address");
+    if (!order) return res.status(404).json({ message: "Order not found" });
+  res.status(200).json( order );
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+}
 
 
 // Update order status (Admin only)
@@ -204,4 +216,4 @@ const cancelOrder = async (req, res) => {
       }
     };
 
-module.exports = {placeOrder,getAllOrders,getUserOrders,updateOrderStatus,cancelOrder,bulkUpdateOrderStatus}
+module.exports = {placeOrder,getAllOrders,getUserOrders,updateOrderStatus,cancelOrder,bulkUpdateOrderStatus,getOrderById}

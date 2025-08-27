@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Home.css";
-import "../styles/Delivery.css";
+import "../styles/home.css";
+import "../styles/delivery.css";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +31,17 @@ const Delivery = () => {
       const userId = decoded.id || decoded.userId;
 
       // Fetch user profile
+      axiosInstance
+        .get(`${api}/api/user/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(res => {
+          setProfileData({
+            id: res.data._id,
+            name: res.data.name,
+            email: res.data.email
+          });
+        });
 
       // Fetch addresses
       axiosInstance
@@ -115,7 +126,9 @@ const groupedByShop = cartItems.reduce((acc, item) => {
         {profileData && (
           <div className="delivery-section">
             <h3>Recipient Information</h3>
+            <p><strong>Name:</strong> {profileData.name}</p>
             
+            <p><strong>Email:</strong> {profileData.email}</p>
 
             {addresses.length > 0 ? (
               <div className="delivery-address-select">

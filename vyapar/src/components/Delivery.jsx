@@ -39,7 +39,6 @@ const Delivery = () => {
           setProfileData({
             id: res.data._id,
             name: res.data.name,
-            phone: res.data.mobileNumber,
             email: res.data.email
           });
         });
@@ -128,7 +127,6 @@ const groupedByShop = cartItems.reduce((acc, item) => {
           <div className="delivery-section">
             <h3>Recipient Information</h3>
             <p><strong>Name:</strong> {profileData.name}</p>
-            <p><strong>Phone:</strong> {profileData.phone}</p>
             <p><strong>Email:</strong> {profileData.email}</p>
 
             {addresses.length > 0 ? (

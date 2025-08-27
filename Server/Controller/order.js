@@ -80,8 +80,8 @@ const getUserOrders = async (req, res) => {
     const userId = req.user.id;
     const orders = await Order.find({ user: userId })
       .populate("items.product")
-      .populate("address");
-
+      .populate("address")
+      .sort({createdAt:-1});
     // Inject shopName into each order item
     const formattedOrders = orders.map(order => {
       const itemsWithShop = order.items.map(item => ({
@@ -115,8 +115,8 @@ const getAllOrders = async (req, res) => {
         }
       })
       .populate({ path: "user", select: "-password" })
-      .populate("address");
-
+      .populate("address")
+      .sort({createdAt:-1});
     const formattedOrders = orders.map(order => {
       const itemsWithShop = order.items.map(item => {
         // ✅ match the correct shopStock based on shopName

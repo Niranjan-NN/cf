@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../styles/home.css";
-import "../styles/delivery.css";
+import "../styles/Home.css";
+import "../styles/Delivery.css";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";

@@ -262,7 +262,15 @@ const refreshToken = (req, res) => {
 };
 
 
-    
+const getUserById = async (req, res) => {
+  try {
+    const user = await Register.findById(req.params.id).select("-password");
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch user" });
+  }
+};  
     
 
-module.exports = {registerForm, otpVerify, login, forgotPassword,verifyOtp, resetPassword,googleLogin,refreshToken};
+module.exports = {registerForm, otpVerify, login, forgotPassword,verifyOtp, resetPassword,googleLogin,refreshToken,getUserById};

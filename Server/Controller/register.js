@@ -41,8 +41,8 @@ const generateToken = (user) => {
 
     res.cookie('jwt', tempToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: 'Lax',
+      secure: true,
+      sameSite: 'None',
       maxAge: 5 * 60 * 1000 // 5 minutes
     });
 

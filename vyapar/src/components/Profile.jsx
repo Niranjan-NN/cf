@@ -58,36 +58,61 @@ const api = import.meta.env.VITE_API_URL
   };
 
   const handleAddAddress = async () => {
-    try {
-      const token = localStorage.getItem('token') || localStorage.getItem('authToken');
-      const decoded = jwtDecode(token);
-      const userId = decoded.id || decoded._id;
+  try {
+    // get token
+    const token = localStorage.getItem('token') || localStorage.getItem('authToken');
 
-      const res = await axiosInstance.post(
-        `${api}/api/addAddress`,
-        { ...newAddress, user: userId },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setAddresses(prev => [...prev, res.data]);
-      setNewAddress({
-        fullName: '',
-        mobileNumber: '',
-        locationDetails: '',
-        landmark: '',
-        pincode: '',
-        city: '',
-        state: ''
-      });
-      navigate('/');
-    } catch (error) {
-      console.error('Failed to add address', error);
+    if (!token) {
+      console.error("No token found. Please login again.");
+      return;
     }
-  };
+
+    // decode token safely
+    let decoded;
+    try {
+      decoded = jwtDecode(token);
+    } catch (err) {
+      console.error("Invalid token:", err);
+      localStorage.removeItem('token');
+      localStorage.removeItem('authToken');
+      return;
+    }
+
+    const userId = decoded.id || decoded._id;
+    if (!userId) {
+      console.error("User ID not found in token");
+      return;
+    }
+
+    // send request
+    const res = await axiosInstance.post(
+      `${api}/api/addAddress`,
+      { ...newAddress, user: userId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    // update state
+    setAddresses(prev => [...prev, res.data]);
+    setNewAddress({
+      fullName: '',
+      mobileNumber: '',
+      locationDetails: '',
+      landmark: '',
+      pincode: '',
+      city: '',
+      state: ''
+    });
+
+    navigate('/');
+  } catch (error) {
+    console.error('Failed to add address:', error.response?.data || error.message);
+  }
+};
+
 
   const handleEditAddress = (address) => {
     setEditingId(address._id);

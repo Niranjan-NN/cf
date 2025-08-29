@@ -6,22 +6,29 @@ const Address = require("../Model/Address");
 const placeOrder = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { paymentMethod, addressId, deliveryDays = 5 } = req.body;
+    const { paymentMethod, addressId } = req.body;
 
+    // Fetch cart with products
     const cart = await Cart.findOne({ user: userId }).populate("items.product");
     if (!cart || cart.items.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
 
+    // Validate address
     const address = await Address.findById(addressId);
     if (!address) {
       return res.status(404).json({ message: "Address not found" });
     }
 
-    // Group cart items by shop
+    // Group items by shop
     const shopOrders = {};
     for (const item of cart.items) {
-      // Pick the shop name from product data
+      if (!item.product) {
+        // Product was deleted -> skip or handle differently
+        console.warn(`Product missing for cart item: ${item._id}`);
+        continue;
+      }
+
       const shopName = item.product.shopStocks?.[0]?.shopName || "Unknown Shop";
 
       if (!shopOrders[shopName]) {
@@ -35,25 +42,27 @@ const placeOrder = async (req, res) => {
       });
     }
 
-    const deliveryDate = new Date();
-    deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
+    if (Object.keys(shopOrders).length === 0) {
+      return res.status(400).json({ message: "No valid products in cart" });
+    }
 
     const createdOrders = [];
 
     for (const shopName in shopOrders) {
       const shopItems = shopOrders[shopName];
       const totalPrice = shopItems.reduce((sum, item) => {
-        const productData = cart.items.find(c => String(c.product._id) === String(item.product));
-        return sum + (productData.product.price * item.quantity);
+        const productData = cart.items.find(
+          c => c.product && String(c.product._id) === String(item.product)
+        );
+        return sum + ((productData?.product?.price || 0) * item.quantity);
       }, 0);
 
       const newOrder = new Order({
         user: userId,
-        address,
+        address: address._id,  // ✅ store only ObjectId
         items: shopItems,
         totalPrice,
         paymentMethod,
-        deliveryDate,
         status: "Pending"
       });
 
@@ -61,13 +70,16 @@ const placeOrder = async (req, res) => {
       createdOrders.push(newOrder);
     }
 
-    // Clear cart after all orders are created
+    // Clear cart after successful order(s)
     await Cart.findOneAndDelete({ user: userId });
 
-    res.status(201).json({ message: "Orders placed successfully", orders: createdOrders });
+    res.status(201).json({
+      message: "Orders placed successfully",
+      orders: createdOrders
+    });
 
   } catch (error) {
-    console.error(error);
+    console.error("Place order error:", error);
     res.status(500).json({ error: "Something went wrong" });
   }
 };

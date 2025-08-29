@@ -97,32 +97,46 @@ const OrderDetails = () => {
   }, [api, orderId, navigate]);
 
   const handleCancelOrder = async () => {
-    if (!window.confirm("Are you sure you want to cancel this order?")) return;
+  if (!orderId) {
+    alert("Invalid order ID");
+    return;
+  }
 
-    const token =
-      localStorage.getItem("token") || localStorage.getItem("authToken");
+  if (!window.confirm("Are you sure you want to cancel this order?")) return;
 
-    try {
-      setCancelling(true);
-      const res = await axiosInstance.delete(`${api}/api/order/${orderId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+  const token =
+    localStorage.getItem("token") || localStorage.getItem("authToken");
 
-      setOrder((prev) => ({
-        ...prev,
-        status: "Cancelled",
-      }));
+  if (!token) {
+    alert("You must be logged in to cancel an order");
+    return;
+  }
 
-      alert(res.data.message || "Order cancelled successfully");
-    } catch (error) {
-      console.error("Error cancelling order:", error);
-      alert(
-        error.response?.data?.message || "Failed to cancel the order. Try again."
-      );
-    } finally {
-      setCancelling(false);
-    }
-  };
+  try {
+    setCancelling(true);
+
+    const res = await axiosInstance.delete(`${api}/api/order/${orderId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    // Update order status locally
+    setOrder((prev) => ({
+      ...prev,
+      status: "Cancelled",
+    }));
+
+    alert(res.data?.message || "Order cancelled successfully");
+  } catch (error) {
+    console.error("Error cancelling order:", error);
+
+    const errorMsg =
+      error.response?.data?.message || "Failed to cancel the order. Try again.";
+    alert(errorMsg);
+  } finally {
+    setCancelling(false);
+  }
+};
+
 
   if (loading) {
     return (

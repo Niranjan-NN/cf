@@ -47,6 +47,7 @@ const generateToken = (user) => {
     });
 
     res.status(200).json({ message: "OTP has been sent to your email", tempToken });
+    console.log(tempToken)
   } catch (error) {
     console.error("Error registering user:", error);
     res.status(400).send({ message: error.message });

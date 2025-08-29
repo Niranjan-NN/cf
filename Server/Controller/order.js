@@ -208,24 +208,30 @@ const bulkUpdateOrderStatus = async (req, res) => {
 
 // Cancel order (User)
 const cancelOrder = async (req, res) => {
-    try {
-        const { orderId } = req.params; // Get orderId from URL params
-        const userId = req.user.id;
-    
-        const order = await Order.findOne({ _id: orderId, user: userId });
-        if (!order) return res.status(404).json({ message: "Order not found" });
-    
-        if (order.status !== "Pending") {
-          return res.status(400).json({ message: "Cannot cancel processed order" });
-        }
-    
-        order.status = "Cancelled";
-        await order.save();
-    
-        res.status(200).json({ message: "Order cancelled successfully", order });
-      } catch (error) {
-        res.status(500).json({ error: "Something went wrong" });
-      }
-    };
+  try {
+    const { orderId } = req.params;
+
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    // Optional: check if the logged-in user owns this order
+    if (order.user.toString() !== req.user.id) {
+      return res.status(403).json({ message: 'Not authorized to cancel this order' });
+    }
+
+    // Either delete or mark as cancelled
+    // await order.remove();   // 🔴 Permanently delete
+    order.status = 'Cancelled';  // ✅ Better: mark as cancelled
+    await order.save();
+
+    res.json({ message: 'Order cancelled successfully' });
+  } catch (err) {
+    console.error('Error cancelling order:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
 module.exports = {placeOrder,getAllOrders,getUserOrders,updateOrderStatus,cancelOrder,bulkUpdateOrderStatus,getOrderById}

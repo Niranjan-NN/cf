@@ -9,7 +9,10 @@ const sendMail = require('../Middleware/sendMail')
 
 const addAddress = async (req, res) => {
     try {
-        const newAddress = new Address(req.body); // req.body should contain userId + address info
+        const newAddress = new Address({
+      ...req.body,
+      user: req.user.id || req.user._id, // ensure linked with logged-in user
+    }) // req.body should contain userId + address info
     const savedAddress = await newAddress.save();
     res.status(201).json(savedAddress);
   } catch (error) {
